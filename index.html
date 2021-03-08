@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>cary_vue</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #F0F0F0;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    img:not([src]) {
+      display: none;
+    }
+
+    /* 轻提示设置 */
+    .van-toast {
+      width: 4.8rem !important;
+      max-width: 70%;
+      min-height: 4.8rem !important;
+      padding: 1rem !important;
+      font-size: 0.8rem !important;
+      line-height: 1.2rem !important;
+      border-radius: 0.5rem !important;
+    }
+
+    .van-toast__text {
+      margin-top: 0.5rem !important;
+    }
+
+    .van-toast__icon {
+      font-size: 1.8rem !important;
+    }
+
+    .van-loading__spinner {
+      width: 1.8rem !important;
+      height: 1.8rem !important;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    let htmlwidth = document.documentElement.clientWidth || document.body.clientWidth;
+    let htmlDom = document.getElementsByTagName('html')[0];
+    if (htmlwidth > 750) {
+      htmlwidth = 750
+    }
+    htmlDom.style.fontSize = htmlwidth / 20 + 'px';
+
+  </script>
+</body>
+
+</html>

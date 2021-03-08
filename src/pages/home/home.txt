@@ -1,0 +1,103 @@
+
+//原本主页，后修改
+
+<template>
+  <div>
+    <!--search bar-->
+    <div class="search_bar">
+      <van-row type="flex" justify="center">
+        <van-col span="3">
+          <img :src="locationIcon" width="70%" class="location_icon" />
+        </van-col>
+        <van-col span="16">
+          <van-search class="search_input" placeholder="请输入搜索关键词" />
+          <!-- <div class="text"></div> -->
+        </van-col>
+        <van-col span="4">
+          <van-button type="default" size="mini" class="search_button"
+            >查找</van-button
+          >
+        </van-col>
+      </van-row>
+    </div>
+
+    <!--swiper area-->
+    <div class="swiper_area">
+      <van-swipe :autoplay="2000">
+        <van-swipe-item v-for="(banner, index) in bannerPicArray" :key="index">
+          <img v-lazy="banner.imageurl" width="100%" />
+        </van-swipe-item>
+      </van-swipe>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "home",
+  data() {
+    return {
+      locationIcon: require("../../assets/images/location.png"),
+      bannerPicArray: [
+        {
+          imageurl: require("../../assets/images/banner/banner01.jpg"),
+        },
+        {
+          imageurl: require("../../assets/images/banner/banner02.jpg"),
+        },
+        {
+          imageurl: require("../../assets/images/banner/banner03.jpg"),
+        },
+        {
+          imageurl: require("../../assets/images/banner/banner04.jpg"),
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped>
+.search_bar {
+  height: 2.2rem;
+  background-color: #e5017d;
+  overflow: hidden;
+}
+.van-search,
+.van-cell {
+  padding: 0;
+}
+.van-search__content {
+  height: 1.5rem;
+}
+.van-col--16 {
+  position: relative;
+  z-index: 10;
+  /* overflow: visible; */
+}
+/* .text {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 1.5rem;
+  z-index: 999;
+  background-color: green;
+} */
+.van-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.2rem;
+}
+.search_input {
+  width: 100%;
+  background-color: #e5017d;
+  color: rgb(0, 0, 0);
+}
+.swiper_area {
+  /* overflow: hidden; */
+  position: relative;
+  z-index: 1;
+}
+</style>
