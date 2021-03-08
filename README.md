@@ -1,6 +1,6 @@
-# cary_vue
+# copy-taobao
 
-> cary的vue项目
+> cary的vue项目（仿淘宝）
 
 ## Build Setup
 
