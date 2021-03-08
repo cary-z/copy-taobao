@@ -16,18 +16,18 @@ export default new Vuex.Store({
         reduction: [2000, 100],
         M_sales: 2,
         sort: [{
-            img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-            name: "红色",
-          },
-          {
-            img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-            name: "蓝色",
-          },
-          {
-            img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-            name: "绿色",
-          },
-        ],
+          img: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=196776568,281535040&fm=26&gp=0.jpg",
+          name: "红色",
+        },
+        {
+          img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00187-780.jpg",
+          name: "蓝色",
+        },
+        {
+          img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00006-2339.jpg",
+          name: "绿色",
+        },
+      ],
         shipping_address: "江苏苏州",
         distribution_scope: "梅州市梅江区",
         assess: [{
@@ -637,7 +637,7 @@ export default new Vuex.Store({
                 name: "绿色",
               },
             ],
-            sortindex: 2,
+            sortindex: 0,
             assess_count: 3,
             price: 999,
             num: 1,
@@ -647,18 +647,18 @@ export default new Vuex.Store({
             imgPath: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
             introduction: "奢华珍贵香水",
             sort: [{
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "红色",
-              },
-              {
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "蓝色",
-              },
-              {
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "绿色",
-              },
-            ],
+              img: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=196776568,281535040&fm=26&gp=0.jpg",
+              name: "红色",
+            },
+            {
+              img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00187-780.jpg",
+              name: "蓝色",
+            },
+            {
+              img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00006-2339.jpg",
+              name: "绿色",
+            },
+          ],
             sortindex: 1,
             assess_count: 3,
             price: 999,
@@ -669,18 +669,18 @@ export default new Vuex.Store({
             imgPath: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
             introduction: "奢华珍贵香水",
             sort: [{
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "红色",
-              },
-              {
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "蓝色",
-              },
-              {
-                img: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=122592915,2313113112&fm=26&gp=0.jpg",
-                name: "绿色",
-              },
-            ],
+              img: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=196776568,281535040&fm=26&gp=0.jpg",
+              name: "红色",
+            },
+            {
+              img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00187-780.jpg",
+              name: "蓝色",
+            },
+            {
+              img: "https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00006-2339.jpg",
+              name: "绿色",
+            },
+          ],
             sortindex: 2,
             assess_count: 3,
             price: 999,

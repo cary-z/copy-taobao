@@ -102,6 +102,7 @@ export default {
   data() {
     return {
       value: 1,
+      flag: true,
     };
   },
   methods: {
@@ -116,10 +117,25 @@ export default {
       if (typeof this.good === "undefined") {
         return;
       }
-      let temp = JSON.stringify(this.good);
-      let good = JSON.parse(temp);
-      this.$set(good, "num", this.value);
-      this.$store.state.goods_list[0].goods.push(good);
+      let storegoods = this.$store.state.goods_list[0].goods;
+      let flag = storegoods.some((item) => {
+        // console.log(index);
+        // console.log(item.id, this.good.id, item.sortindex, this.good.sortindex);
+        // console.log("--------------------");
+        let sameflag =
+          item.id == this.good.id && item.sortindex == this.good.sortindex;
+        if (sameflag) {
+          item.num += this.value;
+        }
+        return sameflag;
+      });
+      // console.log(flag);
+      if (!flag) {
+        let temp = JSON.stringify(this.good);
+        let good = JSON.parse(temp);
+        this.$set(good, "num", this.value);
+        storegoods.push(good);
+      }
 
       const toast = Toast.loading({
         duration: 0, // 持续展示 toast
@@ -147,38 +163,56 @@ export default {
     },
     suresort() {
       //   console.log("弹出框", this.good.sort[this.good.sortindex].name);
-
       let index = this.good.indexarr[0];
       let goodsindex = this.good.indexarr[1];
-      let store = this.$store.state.goods_list[index].goods[goodsindex];
+      let storegoods = this.$store.state.goods_list[index].goods;
 
-      store.sortindex = this.good.sortindex;
-      store.num = this.value;
+      let flag = storegoods.some((item) => {
+        // console.log(index);
+        // console.log(item.id, this.good.id, item.sortindex, this.good.sortindex);
+        // console.log("--------------------");
+        let sameflag =
+          item.id == this.good.id && item.sortindex == this.good.sortindex;
+        if (sameflag) {
+          item.num += this.value;
+          storegoods.splice(goodsindex, 1);
+        }
+        return sameflag;
+      });
+      // console.log(flag);
+      if (!flag) {
+        storegoods[goodsindex].sortindex = this.good.sortindex;
+        storegoods[goodsindex].num = this.value;
+      }
+
       //   console.log("store", store.sortindex, store.sort[store.sortindex].name);
       this.onhide();
     },
   },
   created() {
     // console.log(this.mode, this.good);
-    // let index = this.good.indexarr[0];
-    // let goodsindex = this.good.indexarr[1];
-    // let store = this.$store.state.goods_list[index].goods[goodsindex];
-    // this.value = store.num;
   },
   updated() {
-    console.log(111);
     if (!this.visible) {
+      this.flag = true;
+    }
+    if (this.visible && this.flag) {
       this.value = this.getnum;
+      this.flag = false;
     }
   },
   computed: {
     getnum() {
       //   console.log(111);
-      let index = this.good.indexarr[0];
-      let goodsindex = this.good.indexarr[1];
-      let store = this.$store.state.goods_list[index].goods[goodsindex];
+      if (this.good.indexarr) {
+        let index = this.good.indexarr[0];
+        let goodsindex = this.good.indexarr[1];
+        let store = this.$store.state.goods_list[index].goods[goodsindex];
 
-      return store.num;
+        return store.num;
+      } else {
+        return this.value;
+      }
     },
   },
   //   watch: {

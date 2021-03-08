@@ -161,6 +161,7 @@
       @delete="onDelete"
     />
     <shop-popup
+      v-if="!checkobj"
       :visible="sort_show"
       :mode="3"
       :good="good_popoup"
@@ -213,7 +214,6 @@ export default {
         this.good_popoup.price,
         this.good_popoup.introduction,
         this.good_popoup.assess_count,
-        this.good_popoup.indexarr,
       ] = [
         curgood.id,
         curgood.sort,
@@ -221,9 +221,9 @@ export default {
         curgood.price,
         curgood.introduction,
         curgood.assess_count,
-        [index, goodsindex],
       ];
-      console.log(2222);
+
+      this.$set(this.good_popoup, "indexarr", [index, goodsindex]);
 
       this.sort_show = true;
     },
@@ -315,6 +315,9 @@ export default {
     let index = this.goodsindexarr[0];
     let goodsindex = this.goodsindexarr[1];
     let curgood = this.goods_list[index].goods[goodsindex];
+    if (!curgood) {
+      return;
+    }
     [
       this.good_popoup.id,
       this.good_popoup.price,
@@ -328,8 +331,8 @@ export default {
     );
     this.$set(this.good_popoup, "sortindex", 0);
 
-    this.goods_list.forEach((shopitem, shopindex) => {
-      shopitem.goods.forEach((goodsitem, goodsindex) => {
+    this.goods_list.forEach((shopitem) => {
+      shopitem.goods.forEach((goodsitem) => {
         that.$set(goodsitem, "numflag", false);
         that.$set(goodsitem, "selectflag", false);
       });
@@ -346,6 +349,10 @@ export default {
         count += this.goods_list[i].goods.length;
       }
       return count;
+    },
+    checkobj() {
+      // console.log(Object.keys(this.good_popoup).length === 0);
+      return Object.keys(this.good_popoup).length === 0;
     },
   },
 };
