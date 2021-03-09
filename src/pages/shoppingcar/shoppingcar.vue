@@ -28,10 +28,7 @@
             </div>
             <div class="goods_count">共{{ allcount }}件宝贝</div>
             <div
-              :class="{
-                goods_list: true,
-                margin_bottom: index != goods_list.length - 1,
-              }"
+              class="goods_list margin_bottom"
               v-for="(item, index) in goods_list"
               :key="index"
               v-show="item.goods.length > 0"
@@ -70,7 +67,7 @@
                     />
                     <div class="shop_message">
                       <span class="shop_introduce">{{
-                        goodsitem.introduce
+                        goodsitem.introduction
                       }}</span>
                       <div
                         class="shop_type"
@@ -167,6 +164,24 @@
       :good="good_popoup"
       @hide_popup="hidesort"
     ></shop-popup>
+    <div class="settlement">
+      <div class="left">
+        <div
+          :class="{
+            iconfont: true,
+            iconroundcheckfill: allcheckselect,
+            iconround: !allcheckselect,
+          }"
+          @click="allgoodsselectclick()"
+        ></div>
+        <span class="allselect">全选</span>
+      </div>
+      <div class="right">
+        <span class="total">合计：</span>
+        <span class="total_price">￥{{ settlement_price }}</span>
+        <span class="settlement_text">结算({{ settlement_price }})</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -303,6 +318,16 @@ export default {
         item.selectflag = !flag;
       });
     },
+    allgoodsselectclick() {
+      let flag = this.goods_list.every((item) => {
+        return item.goods.every((goodsitem) => goodsitem.selectflag);
+      });
+      this.goods_list.forEach((item) => {
+        item.goods.forEach((goodsitem) => {
+          goodsitem.selectflag = !flag;
+        });
+      });
+    },
     goodsDelete(index, goodsindex) {
       this.goods_list[index].goods.splice(goodsindex, 1);
     },
@@ -343,12 +368,32 @@ export default {
       return (index) =>
         this.goods_list[index].goods.every((item) => item.selectflag);
     },
+    allcheckselect() {
+      let flag = this.goods_list.every((item) => item.goods.length == 0);
+      if (flag) {
+        return false;
+      }
+      return this.goods_list.every((item) => {
+        return item.goods.every((goodsitem) => goodsitem.selectflag);
+      });
+    },
     allcount() {
       let count = 0;
       for (let i = 0; i < this.goods_list.length; i++) {
         count += this.goods_list[i].goods.length;
       }
       return count;
+    },
+    settlement_price() {
+      let sum = 0;
+      this.goods_list.forEach((shopitem) => {
+        shopitem.goods.forEach((goodsitem) => {
+          if (goodsitem.selectflag) {
+            sum += goodsitem.price * goodsitem.num;
+          }
+        });
+      });
+      return sum;
     },
     checkobj() {
       // console.log(Object.keys(this.good_popoup).length === 0);
@@ -392,7 +437,7 @@ export default {
 .shoppingcar {
   height: 100%;
   .box {
-    padding: 0 0.5rem 0.5rem 0.5rem;
+    padding: 0 0.5rem 5vh 0.5rem;
     .title {
       display: flex;
       align-items: center;
@@ -597,7 +642,7 @@ export default {
   top: 0 !important;
   bottom: 0 !important;
   margin-top: 6vh !important;
-  margin-bottom: 8vh !important;
+  margin-bottom: 13vh !important;
 }
 
 //数字键盘设置
@@ -628,6 +673,62 @@ export default {
         bottom: 0.375rem;
         height: 95%;
       }
+    }
+  }
+}
+
+//结算栏
+.settlement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 8vh;
+  left: 0;
+  width: 100vw;
+  height: 5vh;
+  padding: 0 0.5rem;
+  font-size: 0.6rem;
+  background-color: #fff;
+  border-top: 0.05rem solid #dddddd;
+  border-bottom: 0.05rem solid #dddddd;
+  box-sizing: border-box;
+  .left {
+    display: flex;
+    align-items: center;
+    .iconround {
+      color: #c9c9c9;
+    }
+    .iconroundcheckfill {
+      color: #ec682b;
+    }
+    .allselect {
+      margin-left: 0.3rem;
+      color: #6b6b6b;
+    }
+  }
+  .right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .total {
+      color: #4a4a4a;
+    }
+    .total_price {
+      font-weight: 550;
+      color: #ec612a;
+      margin-right: 0.2rem;
+    }
+    .settlement_text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+      padding: 0 0.8rem;
+      color: #fff;
+      font-size: 0.7rem;
+      background-color: #ec612a;
+      border-radius: 1rem;
     }
   }
 }

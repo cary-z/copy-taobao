@@ -203,7 +203,6 @@ export default {
   },
   computed: {
     getnum() {
-      //   console.log(111);
       if (this.good.indexarr) {
         let index = this.good.indexarr[0];
         let goodsindex = this.good.indexarr[1];
@@ -215,15 +214,6 @@ export default {
       }
     },
   },
-  //   watch: {
-  //     getnum: {
-  //       handler: function () {
-
-  //         // console.log(111);
-  //       },
-  //       deep: true,
-  //     },
-  //   },
 };
 </script>
 
