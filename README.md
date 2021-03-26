@@ -4,7 +4,7 @@
 
 ## 使用的技术栈
 
-> vue.js,vant,sass
+> vue.js,vue-router,vant,sass
 
 ## 目前实现的功能
 
